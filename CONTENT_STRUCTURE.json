@@ -366,17 +366,17 @@
     },
     {
       "lesson_id": "13",
-      "title": "企业实践：用知识图谱搭建零售行业知识中台",
+      "title": "企业实践：用知识中台服务销售诊断推荐系统",
       "core_knowledge_points": [
         "知识中台",
-        "零售行业 Schema",
+        "销售诊断 Schema",
         "知识图谱沉淀",
-        "Agent 使用知识",
+        "映射层",
         "反馈回流"
       ],
       "teaching_objectives": [
-        "解释通用零售知识是否适合沉淀到知识图谱",
-        "设计零售行业知识中台架构",
+        "解释知识中台不等于知识图谱但可以使用知识图谱",
+        "设计销售诊断领域知识中台和映射层",
         "规划 Agent 反馈回流和持续更新机制"
       ],
       "content_file": "lessons/13-企业实践与结课项目/content.md",
@@ -384,12 +384,12 @@
         {
           "filename": "capstone_seed.cypher",
           "language": "cypher",
-          "description": "零售知识中台最小种子图谱"
+          "description": "销售诊断知识中台最小种子图谱"
         },
         {
           "filename": "capstone_eval.py",
           "language": "python",
-          "description": "零售知识中台评估指标"
+          "description": "销售诊断知识中台评估指标"
         }
       ]
     },
