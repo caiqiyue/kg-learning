@@ -3,7 +3,7 @@
 # gold_entities 表示人工标注的标准答案。
 # 在企业项目中，gold set 通常来自专家标注或抽样人工审核。
 gold_entities = {
-    ("llm-graph-builder", "Project"),
+    ("knowledge-graph-platform", "Project"),
     ("LangChain", "Library"),
     ("PDF", "DocumentType"),
     ("Neo4j", "Database"),
@@ -12,7 +12,7 @@ gold_entities = {
 # predicted_entities 表示模型或规则抽取出来的结果。
 # 这里故意漏掉 PDF，并多抽出一个错误实体 Graph，方便观察指标变化。
 predicted_entities = {
-    ("llm-graph-builder", "Project"),
+    ("knowledge-graph-platform", "Project"),
     ("LangChain", "Library"),
     ("Neo4j", "Database"),
     ("Graph", "Concept"),

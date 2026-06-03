@@ -5,7 +5,7 @@ import hashlib
 
 document = {
     "fileName": "demo.txt",
-    "text": "Neo4j LLM Graph Builder uses LangChain. LangChain calls LLMGraphTransformer.",
+    "text": "知识图谱构建器 uses LangChain. LangChain calls LLMGraphTransformer.",
 }
 
 
@@ -24,9 +24,9 @@ def mock_extract(chunk: str) -> dict:
     nodes = []
     rels = []
     if "Neo4j" in chunk:
-        nodes.append(("Project", "Neo4j LLM Graph Builder"))
+        nodes.append(("Project", "知识图谱构建器"))
         nodes.append(("Library", "LangChain"))
-        rels.append(("Neo4j LLM Graph Builder", "USES", "LangChain"))
+        rels.append(("知识图谱构建器", "USES", "LangChain"))
     if "LLMGraphTransformer" in chunk:
         nodes.append(("Library", "LangChain"))
         nodes.append(("Tool", "LLMGraphTransformer"))

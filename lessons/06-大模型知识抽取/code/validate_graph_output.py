@@ -12,15 +12,15 @@ ALLOWED_RELATIONSHIPS = {
 # 模拟 LLM 输出；其中包含一个不允许的关系 WRITES_TO。
 llm_output = {
     "nodes": [
-        {"id": "Neo4j LLM Graph Builder", "type": "Project"},
+        {"id": "知识图谱构建器", "type": "Project"},
         {"id": "LangChain", "type": "Library"},
         {"id": "PDF", "type": "DocumentType"},
         {"id": "Neo4j", "type": "Database"},
     ],
     "relationships": [
-        {"source": "Neo4j LLM Graph Builder", "source_type": "Project", "type": "USES", "target": "LangChain", "target_type": "Library"},
-        {"source": "Neo4j LLM Graph Builder", "source_type": "Project", "type": "EXTRACTS_FROM", "target": "PDF", "target_type": "DocumentType"},
-        {"source": "Neo4j LLM Graph Builder", "source_type": "Project", "type": "WRITES_TO", "target": "Neo4j", "target_type": "Database"},
+        {"source": "知识图谱构建器", "source_type": "Project", "type": "USES", "target": "LangChain", "target_type": "Library"},
+        {"source": "知识图谱构建器", "source_type": "Project", "type": "EXTRACTS_FROM", "target": "PDF", "target_type": "DocumentType"},
+        {"source": "知识图谱构建器", "source_type": "Project", "type": "WRITES_TO", "target": "Neo4j", "target_type": "Database"},
     ],
 }
 

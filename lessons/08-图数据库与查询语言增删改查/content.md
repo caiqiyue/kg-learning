@@ -45,7 +45,7 @@ RETURN c.position, e.id
 - 向量索引、全文索引、计数统计是否需要更新？
 - GraphRAG 返回的来源是否还有效？
 
-本项目 `delete_file_from_graph` 就分成“只删文档与 chunk”和“同时删不再被其他文档引用的实体”两种策略，并额外清理无引用社区。
+成熟系统通常会把删除分成“只删文档与 chunk”和“同时删不再被其他文档引用的实体”两种策略，并额外清理无引用社区。
 
 ## 索引与约束
 
@@ -63,13 +63,14 @@ RETURN c.position, e.id
 
 Cypher 的语法不难，难的是图谱操作的副作用。企业知识图谱必须把增删改查和溯源、共享实体、索引、社区、问答结果一起设计。
 
-## 源码导读
+## 工程阅读任务
 
-建议阅读本项目这些位置：
+阅读任何知识图谱系统的增删改查设计时，可以重点寻找这些模块：
 
-- `backend/src/graphDB_dataAccess.py`：看 `create_source_node`、`delete_file_from_graph`、`drop_create_vector_index`，理解真实项目如何创建、删除、重建索引。
-- `backend/src/shared/constants.py`：阅读图可视化和删除相关查询，观察复杂查询如何组织。
-- `backend/score.py`：查看 `/delete_document_and_entities`、`/graph_query`、`/drop_create_vector_index` 如何把 API 映射到图谱操作。
+- 数据写入模块：是否使用 `MERGE`、唯一约束和批量 `UNWIND` 保证幂等。
+- 删除模块：是否区分来源删除、实体删除、共享实体保护和索引刷新。
+- 查询模块：是否把业务 API 映射到稳定的 Cypher 查询模板。
+- 索引模块：是否能重建向量索引、全文索引和实体唯一约束。
 
 阅读问题：
 

@@ -36,12 +36,12 @@ def build_local_context(chunks: list[RetrievedChunk]) -> str:
 mock_chunks = [
     RetrievedChunk(
         chunk_id="c1",
-        text="Neo4j LLM Graph Builder uses LangChain to extract entities.",
+        text="知识图谱构建器 uses LangChain to extract entities.",
         score=0.91,
         source="project README",
-        entities=["Neo4j LLM Graph Builder", "LangChain"],
+        entities=["知识图谱构建器", "LangChain"],
         neighbor_facts=[
-            "Neo4j LLM Graph Builder - USES - LangChain",
+            "知识图谱构建器 - USES - LangChain",
             "LangChain - CALLS - LLMGraphTransformer",
         ],
     )

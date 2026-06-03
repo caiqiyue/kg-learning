@@ -17,7 +17,7 @@ from langchain_experimental.graph_transformers import LLMGraphTransformer
 # 准备一个 Document；真实项目里它通常来自 PDF loader 或网页 loader。
 documents = [
     Document(
-        page_content="Neo4j LLM Graph Builder uses LangChain to extract entities from PDF documents."
+        page_content="知识图谱构建器 uses LangChain to extract entities from PDF documents."
     )
 ]
 

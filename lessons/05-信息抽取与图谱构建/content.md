@@ -21,17 +21,17 @@
 原文：
 
 ```text
-Neo4j LLM Graph Builder 使用 LangChain 从 PDF 文档中抽取实体，并把结果写入 Neo4j。
+知识图谱构建器 使用 LangChain 从 PDF 文档中抽取实体，并把结果写入 Neo4j。
 ```
 
 可以抽出：
 
-- 实体：`Neo4j LLM Graph Builder`、`LangChain`、`PDF`、`Neo4j`
-- 关系：`Neo4j LLM Graph Builder - USES - LangChain`
-- 关系：`Neo4j LLM Graph Builder - EXTRACTS_FROM - PDF`
-- 关系：`Neo4j LLM Graph Builder - STORES_IN - Neo4j`
+- 实体：`知识图谱构建器`、`LangChain`、`PDF`、`Neo4j`
+- 关系：`知识图谱构建器 - USES - LangChain`
+- 关系：`知识图谱构建器 - EXTRACTS_FROM - PDF`
+- 关系：`知识图谱构建器 - STORES_IN - Neo4j`
 
-如果原文后面又说“它还支持网页”，共指消解要判断“它”指的是 `Neo4j LLM Graph Builder`，不是 `Neo4j` 数据库。
+如果原文后面又说“它还支持网页”，共指消解要判断“它”指的是 `知识图谱构建器`，不是 `Neo4j` 数据库。
 
 ## 从规则到深度学习
 

@@ -25,10 +25,10 @@ property_graph = {
 
 # 知识图谱：在属性图基础上强调语义、来源和可查询事实。
 knowledge_graph_fact = {
-    "subject": "llm-graph-builder",
+    "subject": "knowledge-graph-platform",
     "predicate": "USES",
     "object": "Neo4j",
-    "source": "project README",
+    "source": "product documentation",
     "confidence": 0.95
 }
 

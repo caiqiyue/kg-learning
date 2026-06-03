@@ -6,7 +6,6 @@
   "level": "企业级快速入门",
   "duration": "4 周",
   "tech_stack": ["Python", "Neo4j", "Cypher", "LangChain", "LLMGraphTransformer", "GraphRAG"],
-  "source_project": "/Users/apple/Desktop/llm-graph-builder",
   "generated_at": "2026-06-03",
   "total_lessons": 15,
   "build_status": "completed"

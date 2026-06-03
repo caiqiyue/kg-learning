@@ -63,7 +63,7 @@ RDF/OWL 强调标准化语义、推理和跨系统互操作。Neo4j 属性图强
 
 ## 和 LLM 的关系
 
-LLM 让三元组抽取变容易了，但也让 schema 控制更重要。没有约束的大模型会创造看似合理但不可维护的节点和关系。课程后续会看到，本项目通过 `allowedNodes` 和 `allowedRelationship` 控制抽取范围。
+LLM 让三元组抽取变容易了，但也让 schema 控制更重要。没有约束的大模型会创造看似合理但不可维护的节点和关系。生产系统通常通过 `allowedNodes` 和 `allowedRelationship` 控制抽取范围。
 
 ## 小结
 

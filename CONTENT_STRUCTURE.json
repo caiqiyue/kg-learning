@@ -229,7 +229,7 @@
         "状态与重试"
       ],
       "teaching_objectives": [
-        "复盘 llm-graph-builder 流水线",
+        "复盘文档到知识图谱流水线",
         "设计可恢复处理任务",
         "理解 chunk 与实体的双层索引"
       ],

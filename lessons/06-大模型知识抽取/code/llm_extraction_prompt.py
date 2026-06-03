@@ -1,6 +1,6 @@
 """模拟一个 LLM 知识抽取协议，不实际调用模型。"""
 
-chunk_text = "Neo4j LLM Graph Builder uses LangChain to extract entities and relationships from documents."
+chunk_text = "知识图谱构建器 uses LangChain to extract entities and relationships from documents."
 
 schema = {
     "allowed_nodes": ["Project", "Library", "Database", "Document"],
@@ -22,13 +22,13 @@ prompt = f"""
 
 mock_llm_output = {
     "nodes": [
-        {"id": "Neo4j LLM Graph Builder", "type": "Project"},
+        {"id": "知识图谱构建器", "type": "Project"},
         {"id": "LangChain", "type": "Library"},
         {"id": "documents", "type": "Document"},
     ],
     "relationships": [
-        {"source": "Neo4j LLM Graph Builder", "type": "USES", "target": "LangChain"},
-        {"source": "Neo4j LLM Graph Builder", "type": "EXTRACTS_FROM", "target": "documents"},
+        {"source": "知识图谱构建器", "type": "USES", "target": "LangChain"},
+        {"source": "知识图谱构建器", "type": "EXTRACTS_FROM", "target": "documents"},
     ],
 }
 

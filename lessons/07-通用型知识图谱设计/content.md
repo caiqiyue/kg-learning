@@ -6,7 +6,7 @@
 
 ## 通用型图谱的常见分层
 
-本项目给了很好的工程参考：
+通用型图谱常见的工程分层是：
 
 ```text
 Document -> Chunk -> Entity -> Community

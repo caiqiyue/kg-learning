@@ -14,7 +14,7 @@
 - 额外规则：不要编造，关系必须来自文本，实体 id 要规范化。
 - 溯源：每个实体和关系最好能关联到 chunk。
 
-本项目 `backend/src/llm.py` 使用 `LLMGraphTransformer`，并把 `allowed_nodes`、`allowed_relationships`、`node_properties`、`relationship_properties`、`additional_instructions` 传给模型。这是工程上非常关键的一步：让模型在可控空间里抽取，而不是自由发挥。
+成熟工程常使用图转换器或结构化输出组件，并把 `allowed_nodes`、`allowed_relationships`、`node_properties`、`relationship_properties`、`additional_instructions` 传给模型。这是工程上非常关键的一步：让模型在可控空间里抽取，而不是自由发挥。
 
 ## LLM 抽取的优势
 
@@ -37,8 +37,8 @@ LLM 的问题也很明显：
 没有 schema 约束时，模型可能输出：
 
 ```text
-Neo4j LLM Graph Builder - IS_RELATED_TO - LangChain
-Neo4j LLM Graph Builder - PUTS_DATA_SOMEWHERE - Neo4j
+知识图谱构建器 - IS_RELATED_TO - LangChain
+知识图谱构建器 - PUTS_DATA_SOMEWHERE - Neo4j
 ```
 
 这些关系看起来能懂，但工程上很难维护。下次模型可能又写成 `USES_TOOL`、`WRITES_INTO`。
@@ -46,11 +46,20 @@ Neo4j LLM Graph Builder - PUTS_DATA_SOMEWHERE - Neo4j
 加上 schema 后，希望输出变成：
 
 ```text
-Neo4j LLM Graph Builder - USES - LangChain
-Neo4j LLM Graph Builder - STORES_IN - Neo4j
+知识图谱构建器 - USES - LangChain
+知识图谱构建器 - STORES_IN - Neo4j
 ```
 
-这就是为什么本项目要支持 `allowedNodes` 和 `allowedRelationship`。
+这就是为什么生产系统要支持 `allowedNodes` 和 `allowedRelationship` 这类白名单约束。
+
+```mermaid
+flowchart LR
+    A[文本片段 Chunk] --> B[提示词与 Schema 约束]
+    B --> C[大模型抽取]
+    C --> D[结构化 JSON 或 GraphDocument]
+    D --> E[校验与去重]
+    E --> F[写入图数据库]
+```
 
 ## 小结
 
