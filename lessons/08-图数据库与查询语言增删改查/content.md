@@ -35,6 +35,14 @@ RETURN c.position, e.id
 
 **删除**要谨慎。删除节点前必须处理关系，常用 `DETACH DELETE`。但如果实体被多个文档共享，不能随便删。
 
+本节配套代码不只演示单条语句，而是覆盖四类工程场景：
+
+- `cypher_crud_examples.cypher`：从 `Document`、`Chunk`、`Entity` 到溯源关系的基础 CRUD。
+- `cypher_advanced_queries.cypher`：路径查询、多跳邻域、聚合统计和分页查询。
+- `bulk_import_unwind.cypher`：用 `UNWIND` 批量写入 chunk、实体和关系。
+- `document_delete_with_orphans.cypher`：删除文档时保留共享实体，并清理不再被任何 chunk 引用的孤立实体。
+- `neo4j_driver_crud.py` 与 `python_transaction_batch.py`：用 Python Driver 执行幂等写入、事务批处理、查询和安全删除。
+
 ## 为什么比 MySQL 复杂
 
 图谱删除一个文档时，至少要问：
@@ -58,6 +66,18 @@ RETURN c.position, e.id
 - Community summary fulltext/vector index。
 
 索引不是性能细节，而是检索模式能否成立的前提。
+
+`code/cypher_indexes_constraints.cypher` 给出了唯一约束、普通索引、全文索引和向量索引示例。实际运行前要确认 Neo4j 版本、embedding 维度和向量相似度函数与项目配置一致。
+
+## Python + Neo4j 注意点
+
+Python Driver 代码重点不在“能连上数据库”，而在这些工程习惯：
+
+- 所有变量都用 Cypher 参数传入，不拼接用户输入。
+- 写入使用 `execute_write`，读取使用 `execute_read`，让 driver 可以正确处理重试。
+- 批量导入使用单条 `UNWIND`，避免在 Python 里循环提交大量小事务。
+- 删除操作拆成明确函数，区分“删除文档来源”和“删除实体本体”。
+- 动态 label 或关系类型不能直接参数化，真实项目要用白名单或 APOC，并限制可选值。
 
 ## 小结
 

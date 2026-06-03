@@ -2,11 +2,38 @@
   "framework_approved": true,
   "structure_approved": true,
   "framework_issues": [],
-  "structure_issues": [],
+  "structure_issues": [
+    {
+      "issue": "课程结构有完整闭环，但 README 原先没有显式标出每节课在闭环中的作用，代码案例状态也不够清晰。",
+      "status": "fixed",
+      "fix": "README 改为按“课程作用 + 代码案例状态”展示 15 节课。"
+    },
+    {
+      "issue": "第 15 课阻碍编号乱序，权限治理出现在阻碍十二之后，且环与路径爆炸重复混讲。",
+      "status": "fixed",
+      "fix": "将权限治理恢复为阻碍七，并把“无意义环与层级约束”和“多跳查询与路径爆炸”拆开。"
+    }
+  ],
   "content_issues": [
     {
-      "issue": "子智能体发现部分目录含英文缩写、部分代码注释不足、第 14/15 课需要更强拓展深度。",
-      "status": "fixed"
+      "issue": "第 05、07、09、10、11、12 课承担关键工程能力，正文中需要更直接的课堂代码抓手来衔接 code 目录。",
+      "status": "fixed",
+      "fix": "分别补充抽取评估、schema 约束、断点续跑、去重审计、检索路由、Agent 工具协议案例。"
+    },
+    {
+      "issue": "第 06、08、11 课代码案例数量多于其他课程，需要确认是否和主题匹配。",
+      "status": "accepted",
+      "fix": "确认匹配：三课分别承担 LLM 抽取链路、图数据库 CRUD/安全删除/批处理、GraphRAG local/global/hybrid/Text2Cypher 多路线，案例数量高是合理安排。"
+    },
+    {
+      "issue": "第 14 课作为趋势课不需要强行加入代码，但需要和第 15 课工程阻塞点形成前沿-落地闭环。",
+      "status": "accepted",
+      "fix": "保留趋势综述定位，并在 README 与 CONTENT_STRUCTURE 中明确其课程作用。"
+    },
+    {
+      "issue": "第 13 课深度明显高于其他课程，适合作为结课项目，但需要在总纲中标明项目课属性。",
+      "status": "fixed",
+      "fix": "README 课程结构将第 13 课标为领域知识沉淀、映射层和反馈闭环项目课。"
     }
   ],
   "fixes_applied": [
@@ -14,13 +41,23 @@
     "补充传统 NLP、深度学习、LLM 三代抽取路线。",
     "补充 Document/Chunk/Entity/Community 的通用工程案例。",
     "补充 GraphRAG、Agent、后处理与企业治理章节。",
-    "按子智能体审查补充 Python+Neo4j、LangChain+Neo4j、Cypher、GraphRAG、Agent 工具代码案例。",
     "新增知识图谱基础术语与多跳推理正式课程。",
     "新增知识图谱最新进展与企业级工程阻碍拓展课程。",
     "将课时目录统一改为中文命名。",
-    "清理 __pycache__ 和 pyc 缓存文件。",
     "补充工程代码中文注释、工程阅读任务、最新进展对比和企业级验收清单。",
-    "按从易到难重新排序课程：基础术语提前到第 2 课，拓展课程固定放在最后。"
+    "按从易到难重新排序课程：基础术语提前到第 2 课，拓展课程固定放在最后。",
+    "将 CONTENT_STRUCTURE.json 的 code_examples 对齐到真实 code/ 文件和课堂内嵌案例。",
+    "补强第 05、07、09、10、11、12、15 课的课堂内嵌代码或查询案例。",
+    "修正第 15 课阻碍编号乱序，并拆分无意义环与多跳路径爆炸。",
+    "在 README 中补充闭环审核结论和每课代码案例状态。"
   ],
-  "final_verdict": "approved"
+  "final_verdict": "approved_with_fixes",
+  "reviewed_at": "2026-06-03",
+  "review_focus": [
+    "知识图谱来龙去脉是否完整",
+    "现代作用是否覆盖 GraphRAG、LLM 和 Agent",
+    "企业工程阻塞点是否充分",
+    "前沿进展是否能回扣工程实践",
+    "每节课名称、内容深度、代码案例数量是否匹配"
+  ]
 }

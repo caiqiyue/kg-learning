@@ -51,6 +51,31 @@ LLM 时代，抽取变成“给出 schema，让模型直接输出结构化节点
 - 溯源完整性：每个事实能否回到原文 chunk？
 - 图谱可维护性：schema 是否稳定，重复实体是否可控？
 
+## 代码案例：规则抽取与 F1 评估
+
+下面这个极简案例故意不用复杂模型，用来说明“抽取结果必须能被评估”。真实工程里可以把 `extract` 换成 NER、关系抽取模型或 LLM 结构化输出，但评估逻辑仍然需要保留。
+
+```python
+import re
+
+text = "知识图谱构建器 使用 LangChain 从 PDF 文档中抽取实体，并把结果写入 Neo4j。"
+gold_entities = {"知识图谱构建器", "LangChain", "PDF", "Neo4j"}
+
+def extract_entities(sentence):
+    patterns = [r"知识图谱构建器", r"LangChain", r"PDF", r"Neo4j"]
+    return {match for pattern in patterns for match in re.findall(pattern, sentence)}
+
+pred_entities = extract_entities(text)
+tp = len(pred_entities & gold_entities)
+precision = tp / len(pred_entities) if pred_entities else 0
+recall = tp / len(gold_entities) if gold_entities else 0
+f1 = 2 * precision * recall / (precision + recall) if precision + recall else 0
+
+print({"precision": precision, "recall": recall, "f1": f1})
+```
+
+这个案例和本课主题匹配：第 05 课重点不是图数据库写入，而是让学习者明白实体、关系、共指、链接和质量评估如何组成抽取闭环。
+
 ## 小结
 
 信息抽取不是“模型调用一次”。它是一条数据工程、NLP、图数据库和质量治理共同组成的流水线。LLM 可以让抽取更快启动，但不能替代 schema、评估和后处理。

@@ -57,6 +57,36 @@ Agent 可以把 Cypher 查询作为工具，也可以把图谱写入作为长期
 
 知识图谱工具不是“让 Agent 随便执行 Cypher”。生产系统要限制可执行模板，避免越权查询和破坏性写入。
 
+## 代码案例：受控工具协议
+
+Agent 调图谱时，最好暴露业务化工具，而不是让模型自由拼接查询语句。
+
+```python
+TOOLS = {
+    "find_related_risks": {
+        "allowed_roles": {"release_manager", "support_lead"},
+        "max_hops": 3,
+        "read_only": True,
+        "query_template": """
+        MATCH (f:Feature {name: $feature})-[*1..3]-(risk:Risk)
+        WHERE risk.tenantId = $tenant_id
+        RETURN risk.name AS risk, risk.source AS source
+        LIMIT 20
+        """,
+    }
+}
+
+def call_graph_tool(tool_name, user, params, neo4j_session):
+    tool = TOOLS[tool_name]
+    if user["role"] not in tool["allowed_roles"]:
+        raise PermissionError("当前用户无权调用该图谱工具")
+    if not tool["read_only"]:
+        raise PermissionError("Agent 默认不能执行写入工具")
+    return neo4j_session.run(tool["query_template"], **params).data()
+```
+
+这个案例把第 12 课的主题落到工程阻塞点：工具要可审计、可限权、可限制跳数，否则 Agent 很容易把图谱能力用成风险源。
+
 ## 小结
 
 知识图谱让 LLM/Agent 从“会生成文本”走向“能查询事实、追踪来源、理解关系、规划行动”。它最适合做企业 AI 的记忆层、证据层和工具层。

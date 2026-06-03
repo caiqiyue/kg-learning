@@ -57,9 +57,9 @@
       "content_file": "lessons/03-从各种图到知识图谱/content.md",
       "code_examples": [
         {
-          "filename": "graph_models.py",
+          "filename": "lessons/03-从各种图到知识图谱/code/graph_models.py",
           "language": "python",
-          "description": "用 Python 表达三类图模型"
+          "description": "用 Python 表达普通图、属性图和知识图谱的差异"
         }
       ]
     },
@@ -81,9 +81,9 @@
       "content_file": "lessons/04-资源描述框架本体与三元组/content.md",
       "code_examples": [
         {
-          "filename": "triples_to_cypher.py",
+          "filename": "lessons/04-资源描述框架本体与三元组/code/triples_to_cypher.py",
           "language": "python",
-          "description": "把三元组转成简单查询语言语句"
+          "description": "把三元组转成简单 Cypher 写入语句"
         }
       ]
     },
@@ -105,14 +105,19 @@
       "content_file": "lessons/05-信息抽取与图谱构建/content.md",
       "code_examples": [
         {
-          "filename": "rule_based_ie.py",
+          "filename": "lessons/05-信息抽取与图谱构建/code/rule_based_ie.py",
           "language": "python",
           "description": "规则版实体和关系抽取"
         },
         {
-          "filename": "ie_evaluation.py",
+          "filename": "lessons/05-信息抽取与图谱构建/code/ie_evaluation.py",
           "language": "python",
           "description": "实体抽取 Precision/Recall/F1 评估"
+        },
+        {
+          "filename": "lessons/05-信息抽取与图谱构建/content.md#代码案例-规则抽取与-f1-评估",
+          "language": "python",
+          "description": "课堂内嵌规则抽取与 F1 评估示例"
         }
       ]
     },
@@ -134,19 +139,44 @@
       "content_file": "lessons/06-大模型知识抽取/content.md",
       "code_examples": [
         {
-          "filename": "llm_extraction_prompt.py",
+          "filename": "lessons/06-大模型知识抽取/code/llm_extraction_prompt.py",
           "language": "python",
-          "description": "模拟大模型抽取输入输出协议"
+          "description": "模拟大模型抽取提示词和输出协议"
         },
         {
-          "filename": "langchain_graph_transformer_demo.py",
+          "filename": "lessons/06-大模型知识抽取/code/structured_output_pydantic.py",
+          "language": "python",
+          "description": "结构化输出与 Pydantic schema 示例"
+        },
+        {
+          "filename": "lessons/06-大模型知识抽取/code/validate_graph_output.py",
+          "language": "python",
+          "description": "过滤不符合 schema 的大模型输出"
+        },
+        {
+          "filename": "lessons/06-大模型知识抽取/code/extraction_quality_guardrails.py",
+          "language": "python",
+          "description": "抽取质量护栏与拒绝原因记录"
+        },
+        {
+          "filename": "lessons/06-大模型知识抽取/code/schema_driven_extraction_pipeline.py",
+          "language": "python",
+          "description": "schema 驱动的抽取后处理流水线"
+        },
+        {
+          "filename": "lessons/06-大模型知识抽取/code/langchain_graph_transformer_demo.py",
           "language": "python",
           "description": "LangChain 图转换器抽取示例"
         },
         {
-          "filename": "validate_graph_output.py",
+          "filename": "lessons/06-大模型知识抽取/code/graph_documents_to_neo4j.py",
           "language": "python",
-          "description": "过滤不符合 schema 的大模型输出"
+          "description": "GraphDocument 写入图数据库示例"
+        },
+        {
+          "filename": "lessons/06-大模型知识抽取/code/write_graph_documents_to_neo4j.py",
+          "language": "python",
+          "description": "把抽取节点、关系和 chunk 溯源写入 Neo4j"
         }
       ]
     },
@@ -168,14 +198,19 @@
       "content_file": "lessons/07-通用型知识图谱设计/content.md",
       "code_examples": [
         {
-          "filename": "schema_model.py",
+          "filename": "lessons/07-通用型知识图谱设计/code/schema_model.py",
           "language": "python",
           "description": "用 Python 表达通用 schema"
         },
         {
-          "filename": "schema_constraints.cypher",
+          "filename": "lessons/07-通用型知识图谱设计/code/schema_constraints.cypher",
           "language": "cypher",
           "description": "图数据库约束、全文索引和向量索引"
+        },
+        {
+          "filename": "lessons/07-通用型知识图谱设计/content.md#代码案例-把-schema-写成可执行约束",
+          "language": "python/cypher",
+          "description": "课堂内嵌 schema 白名单与唯一约束示例"
         }
       ]
     },
@@ -197,24 +232,44 @@
       "content_file": "lessons/08-图数据库与查询语言增删改查/content.md",
       "code_examples": [
         {
-          "filename": "cypher_crud_examples.cypher",
+          "filename": "lessons/08-图数据库与查询语言增删改查/code/cypher_crud_examples.cypher",
           "language": "cypher",
           "description": "常用知识图谱 CRUD 语句"
         },
         {
-          "filename": "neo4j_driver_crud.py",
+          "filename": "lessons/08-图数据库与查询语言增删改查/code/neo4j_driver_crud.py",
           "language": "python",
           "description": "Python 图数据库驱动增删改查"
         },
         {
-          "filename": "bulk_import_unwind.cypher",
+          "filename": "lessons/08-图数据库与查询语言增删改查/code/bulk_import_unwind.cypher",
           "language": "cypher",
           "description": "UNWIND 批量导入"
         },
         {
-          "filename": "cypher_indexes_constraints.cypher",
+          "filename": "lessons/08-图数据库与查询语言增删改查/code/cypher_indexes_constraints.cypher",
           "language": "cypher",
           "description": "索引、约束和查询计划"
+        },
+        {
+          "filename": "lessons/08-图数据库与查询语言增删改查/code/cypher_advanced_queries.cypher",
+          "language": "cypher",
+          "description": "路径、邻域、聚合和分页查询"
+        },
+        {
+          "filename": "lessons/08-图数据库与查询语言增删改查/code/document_delete_with_orphans.cypher",
+          "language": "cypher",
+          "description": "删除文档并清理孤立实体"
+        },
+        {
+          "filename": "lessons/08-图数据库与查询语言增删改查/code/python_transaction_batch.py",
+          "language": "python",
+          "description": "Python Driver 事务批处理"
+        },
+        {
+          "filename": "lessons/08-图数据库与查询语言增删改查/code/query_parameter_safety.py",
+          "language": "python",
+          "description": "查询参数安全与注入风险控制"
         }
       ]
     },
@@ -236,19 +291,24 @@
       "content_file": "lessons/09-文档到知识图谱工程流水线/content.md",
       "code_examples": [
         {
-          "filename": "mini_pipeline.py",
+          "filename": "lessons/09-文档到知识图谱工程流水线/code/mini_pipeline.py",
           "language": "python",
           "description": "最小文档到图谱流水线"
         },
         {
-          "filename": "document_to_neo4j_pipeline.py",
+          "filename": "lessons/09-文档到知识图谱工程流水线/code/document_to_neo4j_pipeline.py",
           "language": "python",
           "description": "真实图数据库写入流水线"
         },
         {
-          "filename": "resume_failed_chunks.py",
+          "filename": "lessons/09-文档到知识图谱工程流水线/code/resume_failed_chunks.py",
           "language": "python",
           "description": "失败 chunk 续跑示例"
+        },
+        {
+          "filename": "lessons/09-文档到知识图谱工程流水线/content.md#代码案例-可恢复的-chunk-处理",
+          "language": "python",
+          "description": "课堂内嵌可恢复 chunk 处理伪代码"
         }
       ]
     },
@@ -270,24 +330,29 @@
       "content_file": "lessons/10-后处理近邻去重与社区检测/content.md",
       "code_examples": [
         {
-          "filename": "post_processing_queries.cypher",
+          "filename": "lessons/10-后处理近邻去重与社区检测/code/post_processing_queries.cypher",
           "language": "cypher",
           "description": "后处理相关查询语句"
         },
         {
-          "filename": "build_vector_index.cypher",
+          "filename": "lessons/10-后处理近邻去重与社区检测/code/build_vector_index.cypher",
           "language": "cypher",
           "description": "向量索引和近邻查询"
         },
         {
-          "filename": "entity_dedup_merge.cypher",
+          "filename": "lessons/10-后处理近邻去重与社区检测/code/entity_dedup_merge.cypher",
           "language": "cypher",
           "description": "实体去重候选和人工确认合并"
         },
         {
-          "filename": "community_detection_gds.cypher",
+          "filename": "lessons/10-后处理近邻去重与社区检测/code/community_detection_gds.cypher",
           "language": "cypher",
           "description": "社区检测"
+        },
+        {
+          "filename": "lessons/10-后处理近邻去重与社区检测/content.md#代码案例-去重候选与人工确认",
+          "language": "cypher",
+          "description": "课堂内嵌去重候选和合并审计示例"
         }
       ]
     },
@@ -309,24 +374,64 @@
       "content_file": "lessons/11-图谱增强检索与问答/content.md",
       "code_examples": [
         {
-          "filename": "retrieval_modes.py",
+          "filename": "lessons/11-图谱增强检索与问答/code/retrieval_modes.py",
           "language": "python",
           "description": "检索模式选择器"
         },
         {
-          "filename": "local_graphrag_retriever.py",
+          "filename": "lessons/11-图谱增强检索与问答/code/local_graphrag_retriever.py",
           "language": "python",
           "description": "局部图谱增强检索上下文拼装"
         },
         {
-          "filename": "global_community_retriever.py",
+          "filename": "lessons/11-图谱增强检索与问答/code/neo4j_local_retriever.py",
+          "language": "python",
+          "description": "真实 Neo4j Driver 局部图检索示例"
+        },
+        {
+          "filename": "lessons/11-图谱增强检索与问答/code/global_community_retriever.py",
           "language": "python",
           "description": "全局社区摘要检索上下文"
         },
         {
-          "filename": "graph_cypher_qa_demo.py",
+          "filename": "lessons/11-图谱增强检索与问答/code/hybrid_graphrag_pipeline.py",
+          "language": "python",
+          "description": "向量、全文、图邻域和社区摘要混合管道"
+        },
+        {
+          "filename": "lessons/11-图谱增强检索与问答/code/graph_cypher_qa_demo.py",
           "language": "python",
           "description": "受控文本到查询语言模板"
+        },
+        {
+          "filename": "lessons/11-图谱增强检索与问答/code/cypher_qa_chain_langchain.py",
+          "language": "python",
+          "description": "LangChain GraphCypherQAChain 基础示例"
+        },
+        {
+          "filename": "lessons/11-图谱增强检索与问答/code/langchain_graph_cypher_chain_safe.py",
+          "language": "python",
+          "description": "LangChain GraphCypherQAChain 安全用法"
+        },
+        {
+          "filename": "lessons/11-图谱增强检索与问答/code/langchain_neo4j_vectorstore_demo.py",
+          "language": "python",
+          "description": "LangChain Neo4j 向量检索示例"
+        },
+        {
+          "filename": "lessons/11-图谱增强检索与问答/code/neo4j_graphrag_python_pipeline.py",
+          "language": "python",
+          "description": "Neo4j GraphRAG Python 管道示例"
+        },
+        {
+          "filename": "lessons/11-图谱增强检索与问答/code/hybrid_reranker.py",
+          "language": "python",
+          "description": "混合检索重排示例"
+        },
+        {
+          "filename": "lessons/11-图谱增强检索与问答/content.md#代码案例-检索模式路由",
+          "language": "python",
+          "description": "课堂内嵌检索模式路由示例"
         }
       ]
     },
@@ -348,19 +453,24 @@
       "content_file": "lessons/12-知识图谱赋能大模型与智能体/content.md",
       "code_examples": [
         {
-          "filename": "agent_tool_contract.py",
+          "filename": "lessons/12-知识图谱赋能大模型与智能体/code/agent_tool_contract.py",
           "language": "python",
           "description": "智能体查询图谱工具协议"
         },
         {
-          "filename": "kg_agent_tools.py",
+          "filename": "lessons/12-知识图谱赋能大模型与智能体/code/kg_agent_tools.py",
           "language": "python",
           "description": "受控图谱查询工具"
         },
         {
-          "filename": "agent_tool_policy.py",
+          "filename": "lessons/12-知识图谱赋能大模型与智能体/code/agent_tool_policy.py",
           "language": "python",
           "description": "智能体工具安全策略"
+        },
+        {
+          "filename": "lessons/12-知识图谱赋能大模型与智能体/content.md#代码案例-受控工具协议",
+          "language": "python",
+          "description": "课堂内嵌受控工具协议示例"
         }
       ]
     },
@@ -382,12 +492,12 @@
       "content_file": "lessons/13-企业实践与结课项目/content.md",
       "code_examples": [
         {
-          "filename": "capstone_seed.cypher",
+          "filename": "lessons/13-企业实践与结课项目/code/capstone_seed.cypher",
           "language": "cypher",
           "description": "销售诊断知识中台最小种子图谱"
         },
         {
-          "filename": "capstone_eval.py",
+          "filename": "lessons/13-企业实践与结课项目/code/capstone_eval.py",
           "language": "python",
           "description": "销售诊断知识中台评估指标"
         }
@@ -416,25 +526,87 @@
       "title": "拓展：企业级知识图谱工程阻碍与成熟方案",
       "core_knowledge_points": [
         "增量更新",
-        "删除",
+        "删除与级联影响",
         "schema 漂移",
-        "路径爆炸",
+        "无意义环与路径爆炸",
         "权限治理",
+        "评估监控",
+        "反馈闭环",
         "成熟产品"
       ],
       "teaching_objectives": [
         "识别企业落地阻碍",
         "比较外部成熟方案",
-        "设计生产级治理策略"
+        "设计生产级治理、评估和反馈闭环策略"
       ],
       "content_file": "lessons/15-拓展-企业级工程阻碍与成熟方案/content.md",
       "code_examples": [
         {
-          "filename": "enterprise_update_patterns.cypher",
+          "filename": "lessons/15-拓展-企业级工程阻碍与成熟方案/code/enterprise_update_patterns.cypher",
           "language": "cypher",
           "description": "企业级增量更新、软删除和多跳限制模式"
+        },
+        {
+          "filename": "lessons/15-拓展-企业级工程阻碍与成熟方案/content.md#代码案例-限制多跳查询范围",
+          "language": "cypher",
+          "description": "课堂内嵌安全限跳查询示例"
         }
       ]
     }
-  ]
+  ],
+  "curriculum_loop": {
+    "status": "形成闭环，但此前工程阻塞点与代码案例标注不够真实，已修订",
+    "stages": [
+      {
+        "stage": "来龙去脉",
+        "lessons": [
+          "01",
+          "02",
+          "03",
+          "04"
+        ],
+        "focus": "从语义搜索动机、基础术语、图模型到 RDF/OWL/三元组"
+      },
+      {
+        "stage": "构建方法",
+        "lessons": [
+          "05",
+          "06",
+          "07",
+          "08",
+          "09"
+        ],
+        "focus": "从信息抽取、LLM 抽取、Schema 设计到图数据库 CRUD 和可恢复流水线"
+      },
+      {
+        "stage": "现代作用",
+        "lessons": [
+          "10",
+          "11",
+          "12",
+          "13"
+        ],
+        "focus": "后处理、GraphRAG、LLM/Agent 工具层和销售诊断知识中台"
+      },
+      {
+        "stage": "前沿与阻塞",
+        "lessons": [
+          "14",
+          "15"
+        ],
+        "focus": "GraphRAG 产品化、Agent 上下文、虚拟图、动态更新、权限、成本、评估和治理"
+      }
+    ]
+  },
+  "audit_summary": {
+    "reviewed_at": "2026-06-03",
+    "language": "zh-CN",
+    "findings": [
+      "课程主线覆盖知识图谱起源、标准表达、抽取构建、GraphRAG/Agent、企业落地阻碍和前沿趋势，整体闭环成立。",
+      "代码案例实际集中在第 03-13、15 课；第 01、02、14 课为概念/趋势课，无独立代码文件是合理安排。",
+      "第 06、08、11 课代码数量较多，但分别对应 LLM 抽取、图数据库 CRUD、GraphRAG 多模式检索，数量与工程主题匹配。第 11 课覆盖 local/global/hybrid/Text2Cypher/Neo4j GraphRAG 多路线。",
+      "第 05/07/09/10/11/12/15 课已补充课堂内嵌代码或查询案例，帮助正文和代码目录衔接。",
+      "第 15 课原有阻碍编号乱序，且“环”和“路径爆炸”重复混讲，已拆分并修正。"
+    ]
+  }
 }

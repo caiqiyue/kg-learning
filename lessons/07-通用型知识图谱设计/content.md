@@ -60,6 +60,44 @@ Document -> Chunk -> Entity -> Community
 - 是否有唯一约束和索引？
 - 是否有去重和合并策略？
 
+## 代码案例：把 Schema 写成可执行约束
+
+设计课不能只停留在概念图。下面的最小 schema 让“允许什么节点、允许什么关系、如何保留溯源”变成工程配置。
+
+```python
+SCHEMA = {
+    "nodes": {
+        "Document": ["id", "source", "status"],
+        "Chunk": ["id", "text", "position", "embedding"],
+        "Entity": ["id", "name", "type", "confidence"],
+        "Community": ["id", "summary", "version"],
+    },
+    "relationships": [
+        ("Chunk", "PART_OF", "Document"),
+        ("Chunk", "NEXT_CHUNK", "Chunk"),
+        ("Chunk", "HAS_ENTITY", "Entity"),
+        ("Entity", "RELATED_TO", "Entity"),
+        ("Entity", "IN_COMMUNITY", "Community"),
+    ],
+}
+
+def allow_relationship(start_label, rel_type, end_label):
+    return (start_label, rel_type, end_label) in SCHEMA["relationships"]
+```
+
+对应到 Neo4j，至少要先建立稳定主键和常用索引：
+
+```cypher
+CREATE CONSTRAINT document_id IF NOT EXISTS
+FOR (d:Document) REQUIRE d.id IS UNIQUE;
+
+CREATE CONSTRAINT chunk_id IF NOT EXISTS
+FOR (c:Chunk) REQUIRE c.id IS UNIQUE;
+
+CREATE CONSTRAINT entity_id IF NOT EXISTS
+FOR (e:Entity) REQUIRE e.id IS UNIQUE;
+```
+
 ## 小结
 
 通用型知识图谱不是“什么都抽”。它是一种分层架构：底层稳定，中层可扩展，上层按业务微调。设计时要同时考虑抽取、查询、可视化、RAG、Agent 和治理。

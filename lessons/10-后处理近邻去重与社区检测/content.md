@@ -35,6 +35,29 @@ LLM 可能抽出 `OpenAI`、`Open AI`、`OpenAI Inc.`。成熟做法会结合字
 
 这一步直接服务 GraphRAG 的全局搜索：用户问“这批文档整体讲了哪些主题”时，社区摘要比单个 chunk 更合适。
 
+## 代码案例：去重候选与人工确认
+
+后处理课的代码案例不应该追求“一键自动合并”，而要展示风险控制。下面的查询只生成候选，不直接改图。
+
+```cypher
+MATCH (a:Entity), (b:Entity)
+WHERE a.id < b.id
+  AND a.type = b.type
+  AND toLower(a.name) CONTAINS toLower(b.name)
+RETURN a.id AS left_id, b.id AS right_id, a.name AS left_name, b.name AS right_name
+LIMIT 50;
+```
+
+确认后再合并，并把来源和时间写入审计日志：
+
+```cypher
+MATCH (keep:Entity {id: $keepId}), (drop:Entity {id: $dropId})
+MERGE (audit:MergeAudit {id: randomUUID()})
+SET audit.createdAt = datetime(), audit.reason = $reason
+MERGE (audit)-[:KEPT]->(keep)
+MERGE (audit)-[:DROPPED]->(drop);
+```
+
 ## 小结
 
 后处理决定知识图谱能否从 demo 走向生产。一个好图谱不是抽取得到的，而是抽取、清洗、合并、索引、评估和治理共同得到的。

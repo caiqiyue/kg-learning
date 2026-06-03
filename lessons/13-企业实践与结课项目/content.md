@@ -177,12 +177,66 @@ flowchart TD
 |---|---|---|
 | 企业知识图谱平台 | Stardog、GNOSS、Ontotext、Neo4j | 用图谱和本体统一企业语义，支撑查询、治理和 AI |
 | 语义层/数据织物 | Stardog Virtual Graph、Enterprise Knowledge 的 semantic layer | 不一定搬迁所有数据，可以通过语义层连接数据孤岛 |
-| Agent 知识层 | Cognee、Oiya、MemLayer、Ryumem、Engram | Agent 需要共享、可更新、可检索、可审计的知识记忆 |
-| 混合检索平台 | RAG Engine、ZGI、GraphRAG 生态 | 图谱、向量、全文、SQL 通常要组合使用 |
+| Agent 知识层 | Cognee、Mem0 Graph Memory、Graphiti/Zep | Agent 需要共享、可更新、可检索、可审计的知识记忆 |
+| 混合检索平台 | Microsoft GraphRAG、Neo4j GraphRAG、LlamaIndex、LangChain | 图谱、向量、全文、SQL 通常要组合使用 |
 | 开源语义技术 | Apache Stanbol、Open Semantic Framework、QLever、SemTK | 知识管理可以基于 RDF、SPARQL、本体、语义服务构建 |
 | 反馈驱动图谱演化 | EvoRAG、RAG-KG-IL、反思式 KG 构建研究 | 知识中台需要从 Agent 使用效果中持续学习 |
 
 这些做法说明：知识中台不等于知识图谱，但知识图谱是非常重要的“结构化语义骨架”。
+
+## 企业级知识中台的交付物
+
+企业项目不能只交付一张图或一个问答 demo。成熟做法通常把知识中台拆成一组可验收资产：
+
+| 交付物 | 内容 | 验收方式 |
+|---|---|---|
+| 领域本体与 Schema | `Metric`、`Cause`、`Action`、`Constraint`、`Evidence`、`Feedback` 等类型和关系 | 新类型必须有定义、样例、来源、责任人 |
+| 指标字典 | 指标口径、计算 SQL、适用范围、负责人、版本 | 同一个指标在推荐、看板、Agent 中口径一致 |
+| 知识图谱主库 | 已审核实体、关系、规则、证据、时间范围、权限标签 | 抽样检查实体准确率、关系准确率、来源覆盖率 |
+| 文档与证据库 | 制度、复盘、案例、合同、培训材料、工单 | 每条关键知识能回到原文 chunk 或业务系统记录 |
+| 混合检索索引 | 向量索引、全文索引、图索引、社区摘要 | 不同问题类型有明确路由和可观测日志 |
+| 映射层 API | 推荐特征、候选动作、约束检查、解释生成、Agent 工具 | 上层系统不直接依赖底层图谱内部结构 |
+| 评估与反馈系统 | golden set、线上反馈、人工审核、回滚机制 | 错误能定位到对象、来源、版本和责任队列 |
+
+一个常见错误是“图谱团队负责建图，业务团队负责使用”，中间没有产品化接口。企业级知识中台必须把图谱能力封装成稳定服务，例如：
+
+```text
+GET /diagnosis/metric/{metric_id}/root-causes
+GET /recommendation/actions?customer_id=...&metric_id=...
+POST /feedback/action
+POST /feedback/fact-correction
+GET /explain/action/{action_id}
+GET /governance/lineage/{fact_id}
+```
+
+接口返回不应只有自然语言，还要包含 `factId`、`sourceId`、`confidence`、`validFrom`、`validTo`、`permissionScope`、`modelVersion` 和 `reviewStatus`。这些字段决定系统能不能审计、回滚和持续评估。
+
+## 产品与开源工具如何组合
+
+企业落地时不要迷信单一工具。成熟技术栈通常是组合式的：
+
+| 层次 | 可选产品/开源工具 | 成熟用法 |
+|---|---|---|
+| 图数据库 | Neo4j、Amazon Neptune、TigerGraph、Memgraph | 承载属性图、路径查询、图算法、GraphRAG 应用 |
+| RDF/本体/语义层 | Stardog、Ontotext GraphDB、Apache Jena、QLever | 管理本体、SPARQL、推理、SHACL 质量约束、虚拟图 |
+| Agent 记忆与图谱化上下文 | Cognee、Mem0 Graph Memory、Graphiti/Zep | 把对话、任务、事实、用户偏好组织成可检索记忆图 |
+| RAG/应用编排 | Microsoft GraphRAG、Neo4j GraphRAG、LlamaIndex、LangChain | 抽取、检索路由、Text2Cypher、工具调用、问答链路 |
+| 数据与治理 | 数据仓库、数据目录、MDM、IAM、审计平台 | 继承主数据、权限、血缘、审批、数据质量规则 |
+| 评估观测 | RAG 评估框架、LLM observability、内部标注平台 | 记录召回、引用、成本、延迟、人工反馈和线上质量 |
+
+对销售诊断中台来说，一个务实组合是：
+
+```text
+数据仓库/指标平台保存指标事实
+文档库保存制度、案例、复盘和培训材料
+Neo4j 或 Neptune 保存销售诊断属性图
+Stardog/GraphDB/Jena 保存本体、标准口径或虚拟语义层
+向量库保存 chunk embedding
+映射层 API 服务推荐系统、问答 Agent、分析 Agent
+评估系统持续检查抽取、检索、推荐和权限
+```
+
+如果企业已经有主数据管理和数据目录，知识图谱不要重新发明客户、产品、组织的权威身份，而应接入主数据主键，把图谱事实挂到权威对象上。
 
 ## 反馈回流怎么设计
 
@@ -224,6 +278,21 @@ flowchart LR
 
 关键是“定位图谱对象”：反馈要能关联到具体的 `Action`、`Rule`、`Cause`、`Metric`、`Evidence`，否则只能成为一堆很难复用的评论。
 
+## Agent 如何安全使用知识中台
+
+Agent 使用知识中台时，不能只给一个“查图谱”工具。成熟做法是把工具按风险拆开：
+
+| Agent 工具 | 输入 | 输出 | 风险控制 |
+|---|---|---|---|
+| `find_root_causes` | 指标、对象、时间范围 | 候选原因、证据、置信度 | 限定关系类型和跳数 |
+| `check_constraints` | 客户、动作、区域、产品 | 可用/禁用原因、政策来源 | 必须在推荐前调用 |
+| `retrieve_cases` | 症状、行业、客群 | 相似案例、结果、差异点 | 返回来源和适用范围 |
+| `explain_recommendation` | 动作、原因、证据 | 面向业务用户的解释 | 禁止编造无来源收益 |
+| `submit_feedback` | 用户反馈、目标对象 | 待审核反馈记录 | 只写入反馈队列，不直接改主图 |
+| `propose_graph_change` | 新规则或纠错建议 | 变更草案 | 需要专家审批和评估通过 |
+
+关键原则是：Agent 可以读主图、写反馈图、提出变更建议，但不能绕过审批直接改主图。高风险行业还要把 Agent 的每次工具调用、输入上下文、返回证据和最终回答写入审计日志。
+
 ## 建设路线
 
 | 阶段 | 目标 | 交付物 |
@@ -247,6 +316,18 @@ flowchart LR
 - 反馈修复周期：用户发现错误后多久能修复。
 - 知识复用率：同一条规则是否服务多个系统、多个行业或多个客户。
 - 映射稳定性：图谱更新后，上层推荐系统是否能平滑适配。
+- 权限违规率：检索和生成阶段是否出现越权引用。
+- 评估通过率：每次 Schema、规则、索引、提示词变更后，golden set 是否仍然通过。
+- 闭环收益：被反馈修复后的规则，是否降低重复错误率或提升采纳率。
+
+评估要覆盖四层，而不是只测问答：
+
+| 层次 | 评估对象 | 示例指标 |
+|---|---|---|
+| 抽取质量 | 实体、关系、属性、规则 | Precision、Recall、重复实体率、schema drift |
+| 检索质量 | chunk、路径、社区摘要、SQL 结果 | 命中率、引用覆盖率、平均跳数、无来源上下文率 |
+| 推荐质量 | 候选动作、约束过滤、排序 | 采纳率、拒绝原因分布、约束误放行率 |
+| 业务效果 | 指标改善和修复效率 | 转化率提升、修复周期、同类问题复发率 |
 
 ## 最终课程任务
 
@@ -258,6 +339,9 @@ flowchart LR
 4. 映射层如何把图谱知识转成推荐系统可用的特征、规则、候选动作和解释？
 5. Agent 使用后的反馈如何回流？哪些自动更新，哪些必须人审？
 6. 如何评估它是不是一个有效知识中台，而不是一个静态知识库？
+7. 设计 5 个面向推荐系统和 Agent 的 API，并说明返回哪些审计字段。
+8. 选择一套产品/开源工具组合，说明每个工具解决哪一层问题。
+9. 给出上线验收指标：抽取、检索、推荐、权限、反馈闭环各至少 2 个。
 
 ## 小结
 
@@ -270,8 +354,11 @@ flowchart LR
 - Stardog Enterprise Knowledge Graph / Semantic AI Platform：https://www.stardog.com/
 - Stardog Virtual Graphs：https://docs.stardog.com/virtual-graphs/
 - Cognee agent memory platform：https://www.cognee.ai/
-- Oiya structured knowledge layer for AI agents：https://www.oiya.ai/
 - GNOSS Semantic AI Platform open source core：https://gnoss.com/en/open-source
+- Mem0 Graph Memory：https://docs.mem0.ai/open-source/graph_memory/overview
+- Graphiti / Zep temporal context graph：https://www.getzep.com/platform/graphiti/
+- Microsoft GraphRAG：https://microsoft.github.io/graphrag/
+- Neo4j GraphRAG for Python：https://neo4j.com/docs/neo4j-graphrag-python/current/
 - Apache Stanbol semantic content management：https://stanbol.apache.org/
 - QLever SPARQL engine：https://github.com/ad-freiburg/qlever
 - Metronix open-source enterprise knowledge core：https://www.mtrnix.com/

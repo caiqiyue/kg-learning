@@ -54,6 +54,30 @@ flowchart LR
 
 这给课程一个重要经验：知识图谱构建要按“作业系统”设计，而不是按“函数调用”设计。
 
+## 代码案例：可恢复的 Chunk 处理
+
+下面的伪代码展示工程流水线的关键点：每处理完一个 chunk 就回写进度，失败时记录原因，下一次从断点继续。
+
+```python
+def process_document(document, chunks, graph_writer, extractor):
+    start = document.get("processed_chunk", 0)
+    document["status"] = "Processing"
+
+    for index, chunk in enumerate(chunks[start:], start=start):
+        try:
+            graph_doc = extractor.extract(chunk["text"])
+            graph_writer.upsert_chunk(document["id"], chunk, graph_doc)
+            document["processed_chunk"] = index + 1
+            document["retry_condition"] = None
+        except Exception as error:
+            document["status"] = "Failed"
+            document["retry_condition"] = str(error)
+            raise
+
+    document["status"] = "Completed"
+    return document
+```
+
 ## Chunk 和 Entity 的双层结构
 
 为什么不直接把文档抽成实体？因为问答需要原文证据。`Chunk` 保存文本和位置，`Entity` 保存结构化知识，`HAS_ENTITY` 把两者连起来。这样回答时既能拿实体关系，也能返回来源 chunk。
