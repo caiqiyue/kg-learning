@@ -1,0 +1,30 @@
+{
+  "total_tasks": 15,
+  "task_groups": [
+    ["lesson_01", "lesson_02"],
+    ["lesson_03", "lesson_04"],
+    ["lesson_05", "lesson_06"],
+    ["lesson_07", "lesson_08"],
+    ["lesson_09", "lesson_10"],
+    ["lesson_11", "lesson_12"],
+    ["lesson_13", "lesson_14"],
+    ["lesson_15"]
+  ],
+  "task_details": [
+    {"task_id": "lesson_01", "title": "知识图谱的起源", "status": "completed"},
+    {"task_id": "lesson_02", "title": "从各种图到知识图谱", "status": "completed"},
+    {"task_id": "lesson_03", "title": "RDF、OWL、本体与三元组", "status": "completed"},
+    {"task_id": "lesson_04", "title": "传统 NLP 到深度学习信息抽取", "status": "completed"},
+    {"task_id": "lesson_05", "title": "LLM 辅助知识抽取", "status": "completed"},
+    {"task_id": "lesson_06", "title": "通用型知识图谱设计", "status": "completed"},
+    {"task_id": "lesson_07", "title": "Neo4j 与 Cypher CRUD", "status": "completed"},
+    {"task_id": "lesson_08", "title": "文档到图谱工程流水线", "status": "completed"},
+    {"task_id": "lesson_09", "title": "图谱后处理", "status": "completed"},
+    {"task_id": "lesson_10", "title": "GraphRAG", "status": "completed"},
+    {"task_id": "lesson_11", "title": "KG for LLM and Agent", "status": "completed"},
+    {"task_id": "lesson_12", "title": "企业实践与结课项目", "status": "completed"},
+    {"task_id": "lesson_13", "title": "知识图谱基础术语与多跳推理", "status": "completed"},
+    {"task_id": "lesson_14", "title": "知识图谱最新进展与应用", "status": "completed"},
+    {"task_id": "lesson_15", "title": "企业级知识图谱工程阻碍与成熟方案", "status": "completed"}
+  ]
+}

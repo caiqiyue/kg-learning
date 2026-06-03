@@ -1,0 +1,74 @@
+{
+  "framework_name": "知识图谱企业级知识框架",
+  "description": "从图与语义网的历史出发，逐步进入实体、关系、路径、多跳、三元组、Schema、Neo4j 工程、LLM 抽取、GraphRAG、Agent 知识库和企业级治理实践。",
+  "target_audience": "希望系统理解知识图谱并能落地到 LLM 应用、RAG、Agent 和企业数据工程的学习者。",
+  "prerequisites": ["Python 基础", "数据库基础", "HTTP API 基础", "大模型/RAG 基础概念"],
+  "levels": [
+    {
+      "level_name": "基础",
+      "modules": [
+        {
+          "module_name": "知识图谱的起源与动机",
+          "description": "理解从字符串检索到实体关系理解的转变。",
+          "learning_objectives": ["解释为什么需要知识图谱", "区分普通图、语义图、知识图谱", "说清 Google Knowledge Graph 的启发"],
+          "estimated_duration": "0.5 天"
+        },
+        {
+          "module_name": "图模型与知识图谱基础术语",
+          "description": "掌握节点、边、属性、实体、关系、路径、多跳、社区、向量索引和三元组等基础语言。",
+          "learning_objectives": ["解释实体和节点的区别", "讲清路径和多跳", "写出 subject-predicate-object 三元组"],
+          "estimated_duration": "1.5 天"
+        }
+      ]
+    },
+    {
+      "level_name": "进阶",
+      "modules": [
+        {
+          "module_name": "从传统 NLP 到深度学习的信息抽取",
+          "description": "覆盖 NER、关系抽取、实体链接、共指消解与质量评估。",
+          "learning_objectives": ["拆解 KG 构建流水线", "理解经典模型与深度模型的差异", "设计抽取质量指标"],
+          "estimated_duration": "2 天"
+        },
+        {
+          "module_name": "LLM 辅助知识抽取与通用型图谱设计",
+          "description": "学习大模型如何基于 schema、prompt 和结构化输出抽取更好的图谱。",
+          "learning_objectives": ["设计 allowed nodes/relationships", "处理通用型 KG 的可扩展 schema", "识别 LLM 抽取风险"],
+          "estimated_duration": "2 天"
+        },
+        {
+          "module_name": "Neo4j 与 Cypher 工程",
+          "description": "学习图数据库载体、CRUD、索引、约束、可视化和 API 接入。",
+          "learning_objectives": ["写 MERGE/MATCH/SET/DETACH DELETE", "理解图谱 CRUD 比关系型数据库复杂的原因", "设计工程数据模型"],
+          "estimated_duration": "2 天"
+        }
+      ]
+    },
+    {
+      "level_name": "高级",
+      "modules": [
+        {
+          "module_name": "后处理、图算法与 GraphRAG",
+          "description": "学习 KNN、去重、孤立节点、社区检测、社区摘要和混合检索。",
+          "learning_objectives": ["解释 SIMILAR、IN_COMMUNITY、PARENT_COMMUNITY", "比较 vector/fulltext/graph/global retrieval", "构建 GraphRAG 检索链"],
+          "estimated_duration": "3 天"
+        },
+        {
+          "module_name": "知识图谱赋能 LLM 与 Agent",
+          "description": "把知识图谱作为可查询、可追踪、可更新的 Agent 知识库和工具层。",
+          "learning_objectives": ["解释 KG 如何减少幻觉", "设计 Agent 图谱记忆", "规划企业级上线与治理"],
+          "estimated_duration": "2 天"
+        },
+        {
+          "module_name": "最新进展与企业级治理",
+          "description": "补充 GraphRAG 产品化、虚拟图、动态 GraphRAG、增量更新、删除、权限、评估和成熟企业方案。",
+          "learning_objectives": ["了解知识图谱最新应用", "识别企业级阻碍点", "比较 Neo4j、Neptune、Stardog、Ontotext、TigerGraph 等方案"],
+          "estimated_duration": "2 天"
+        }
+      ]
+    }
+  ],
+  "total_modules": 8,
+  "total_lessons": 15,
+  "total_duration": "4 周"
+}

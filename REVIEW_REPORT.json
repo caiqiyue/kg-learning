@@ -1,0 +1,25 @@
+{
+  "framework_approved": true,
+  "structure_approved": true,
+  "framework_issues": [],
+  "structure_issues": [],
+  "content_issues": [
+    {
+      "issue": "子智能体发现部分目录含英文缩写、部分代码注释不足、第 14/15 课需要更强拓展深度。",
+      "status": "fixed"
+    }
+  ],
+  "fixes_applied": [
+    "补充 RDF/OWL 标准基础，避免只讲 Neo4j 属性图。",
+    "补充传统 NLP、深度学习、LLM 三代抽取路线。",
+    "补充 llm-graph-builder 的 Document/Chunk/Entity/Community 工程案例。",
+    "补充 GraphRAG、Agent、后处理与企业治理章节。",
+    "按子智能体审查补充 Python+Neo4j、LangChain+Neo4j、Cypher、GraphRAG、Agent 工具代码案例。",
+    "新增知识图谱基础术语与多跳推理正式课程。",
+    "新增知识图谱最新进展与企业级工程阻碍拓展课程。",
+    "将课时目录统一改为中文命名。",
+    "清理 __pycache__ 和 pyc 缓存文件。",
+    "补充工程代码中文注释、源码导读框、最新进展对比和企业级验收清单。"
+  ],
+  "final_verdict": "approved"
+}

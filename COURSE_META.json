@@ -1,0 +1,13 @@
+{
+  "course_name": "知识图谱企业级课程",
+  "title": "知识图谱企业级快速入门与 LLM/Agent 实战",
+  "topic": "知识图谱",
+  "audience": "懂一点 Python、数据库和大模型应用的初学者到工程进阶者",
+  "level": "企业级快速入门",
+  "duration": "4 周",
+  "tech_stack": ["Python", "Neo4j", "Cypher", "LangChain", "LLMGraphTransformer", "GraphRAG"],
+  "source_project": "/Users/apple/Desktop/llm-graph-builder",
+  "generated_at": "2026-06-03",
+  "total_lessons": 15,
+  "build_status": "completed"
+}

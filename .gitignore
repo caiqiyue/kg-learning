@@ -1,0 +1,13 @@
+# 原始资料不纳入课程 Git 跟踪
+raw-material/**
+!raw-material/.gitkeep
+
+# Python examples
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# OS
+.DS_Store
+Thumbs.db
