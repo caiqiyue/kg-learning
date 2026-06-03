@@ -366,30 +366,30 @@
     },
     {
       "lesson_id": "13",
-      "title": "企业实践与结课项目：构建通用型大模型知识图谱系统",
+      "title": "企业实践：用知识图谱搭建零售行业知识中台",
       "core_knowledge_points": [
-        "需求拆解",
-        "系统架构",
-        "评估",
-        "治理",
-        "上线清单"
+        "知识中台",
+        "零售行业 Schema",
+        "知识图谱沉淀",
+        "Agent 使用知识",
+        "反馈回流"
       ],
       "teaching_objectives": [
-        "完成课程总复盘",
-        "设计结课项目",
-        "形成企业落地路线图"
+        "解释通用零售知识是否适合沉淀到知识图谱",
+        "设计零售行业知识中台架构",
+        "规划 Agent 反馈回流和持续更新机制"
       ],
       "content_file": "lessons/13-企业实践与结课项目/content.md",
       "code_examples": [
         {
           "filename": "capstone_seed.cypher",
           "language": "cypher",
-          "description": "结课项目最小种子图谱"
+          "description": "零售知识中台最小种子图谱"
         },
         {
           "filename": "capstone_eval.py",
           "language": "python",
-          "description": "结课项目评估指标"
+          "description": "零售知识中台评估指标"
         }
       ]
     },
